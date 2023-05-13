@@ -28,11 +28,26 @@ const routes = [
     },
   },
   // Menambahkan Path
+  // {
+  //   method: 'GET',
+  //   path: '/hello/{name?}',
+  //   handler: (request, h) => {
+  //     const { name = 'stranger' } = request.params;
+  //     return `Hello, ${name}!`;
+  //   },
+  // },
+
+  // Query Paramater
   {
     method: 'GET',
     path: '/hello/{name?}',
     handler: (request, h) => {
       const { name = 'stranger' } = request.params;
+      const { lang } = request.query;
+
+      if (lang === 'id') {
+        return `Hai, ${name}!`;
+      }
       return `Hello, ${name}!`;
     },
   },
@@ -48,3 +63,5 @@ const routes = [
 module.exports = routes;
 
 // curl -X POST http://localhost:5000 di terminal terpisah
+
+// Parameter: curl -X GET http://localhost:5000/hello/dicoding?lang=id
